@@ -17,6 +17,8 @@ export class SidenavComponent implements OnInit {
   public isScreenSmall!: boolean;
 
   users!: Observable<User[]>;
+  isDarkTheme: boolean = false;
+  dir: any = 'ltr';
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -24,8 +26,15 @@ export class SidenavComponent implements OnInit {
     private router: Router
   ) {}
 
-  @ViewChild(MatSidenav)
-  sidenav!: MatSidenav;
+  @ViewChild(MatSidenav) sidenav!: MatSidenav;
+
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+  }
+
+  toggleDir() {
+    this.dir = this.dir == 'ltr' ? 'rtl' : 'ltr';
+  }
 
   ngOnInit(): void {
     this.breakpointObserver
